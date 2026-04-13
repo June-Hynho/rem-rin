@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rem-rin"
+version = "0.0.1"
+description = "Ask Rem-rin to download your favorite anime"
+requires-python = ">=3.11"
+dependencies = [
+	"lxml",
+	"aiohttp",
+	"platformdirs",
+	"regex",
+	"cssselect",
+	"av",
+	"rapidfuzz",
+	"tenacity",
+	"m3u8"
+]
+
+[project.scripts]
+rem-rin = "rem_rin.cli:run"

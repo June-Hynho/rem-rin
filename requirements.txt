@@ -1,0 +1,9 @@
+lxml
+aiohttp
+platformdirs
+regex
+cssselect
+av
+rapidfuzz
+tenacity
+m3u8
