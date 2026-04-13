@@ -31,6 +31,8 @@ async def handle_download_id(client, args):
         lang = 'sub'
     if args.episodes:
         episode_set = set(parse_episode_list(args.episodes, len(episodes)))
+    else:
+        episode_set = set(episodes.keys())
     for i, episode in episodes.items():
         if i not in episode_set:
             continue
