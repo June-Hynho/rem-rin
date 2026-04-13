@@ -99,7 +99,7 @@ def get_chapters(data, duration, time_base):
         [intro['start'], intro['end']],
         [intro['end'], outro['start']],
         [outro['start'], outro['end']],
-        [intro['end'], duration]
+        [outro['end'], duration]
     ]]
     titles = ["Pre-Intro", "Intro", "Content", "Outro", "Post-Outro"]
     chapters = []
