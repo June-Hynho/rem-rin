@@ -6,13 +6,13 @@ from rem_rin.downloader import download_episode
 # -----------------------
 # COMMAND HANDLERS
 # -----------------------
-async def handle_search(client: KaidoClient, query: str):
+async def handle_search(client, query: str):
     result = await client.search(query)
     for anime in result:
         print(f"{anime['title']} | {anime['type']} | {anime['duration']} | {anime['id']}")
 
 
-async def handle_download_id(client: KaidoClient, args):
+async def handle_download_id(client, args):
     """
     await client.download_by_id(
         args.value,
@@ -39,7 +39,7 @@ async def handle_download_id(client: KaidoClient, args):
         path = await download_episode(client.session, args.destination, manifest, anime, episode, lang, args.quality)
         print(f"Saved in {path}")
 
-async def handle_download_search(client: KaidoClient, args):
+async def handle_download_search(client, args):
     anime_id = await client.resolve_query(args.query)
 
     await client.download_by_id(
@@ -52,18 +52,18 @@ async def handle_download_search(client: KaidoClient, args):
     )
 
 
-async def handle_info_id(client: KaidoClient, value: int):
+async def handle_info_id(client, value: int):
     result = await client.info_by_id(value)
     print(result)
 
 
-async def handle_info_search(client: KaidoClient, query: str):
+async def handle_info_search(client, query: str):
     anime_id = await client.resolve_query(query)
     result = await client.info_by_id(anime_id)
     print(result)
 
 
-async def handle_eps_id(client: KaidoClient, args):
+async def handle_eps_id(client, args):
     result = await client.list_episodes_by_id(
         args.value,
         limit=args.limit,
@@ -72,7 +72,7 @@ async def handle_eps_id(client: KaidoClient, args):
     print(result)
 
 
-async def handle_eps_search(client: KaidoClient, args):
+async def handle_eps_search(client, args):
     anime_id = await client.resolve_query(args.query)
 
     result = await client.list_episodes_by_id(
