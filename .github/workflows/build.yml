@@ -1,0 +1,37 @@
+name: Build Windows Binary
+
+on:
+  push:
+  release:
+    types: [created]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Install dependencies
+        run: |
+          pip install pyinstaller
+          pip install .
+
+      - name: Build with PyInstaller
+        run: |
+          pyinstaller --onefile --name rem-rin rem_rin/cli.py
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rem-rin-windows
+          path: dist/
