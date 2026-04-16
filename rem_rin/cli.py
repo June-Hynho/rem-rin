@@ -12,6 +12,7 @@ from rem_rin.kaido import KaidoClient
 from rem_rin import APP_NAME
 
 from rem_rin.handler import *
+from rem_rin.preferences import set_preference, get_preference
 
 # -----------------------
 # PARSER
@@ -19,6 +20,11 @@ from rem_rin.handler import *
 def build_parser():
     parser = argparse.ArgumentParser(prog=APP_NAME)
     sub = parser.add_subparsers(dest="command", required=True)
+
+    # -------- PREFERENCES --------
+    preference = sub.add_parser("set")
+    preference.add_argument("property", choices = ["quality", "destination"])
+    preference.add_argument("value")
 
     # -------- SEARCH --------
     search = sub.add_parser("search")
@@ -36,7 +42,6 @@ def build_parser():
 
     for p in (dl_id, dl_search):
         p.add_argument("--episodes", "-e")
-        p.add_argument("--no-confirm", "-y", action="store_true")
         p.add_argument("--dub", action="store_true")
         p.add_argument("--quality", "-q", type=int, default = 1080)
         p.add_argument("--destination", "-d", default = '.')

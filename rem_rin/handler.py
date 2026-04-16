@@ -13,16 +13,6 @@ async def handle_search(client, query: str):
 
 
 async def handle_download_id(client, args):
-    """
-    await client.download_by_id(
-        args.value,
-        episodes=args.episodes,
-        no_confirm=args.no_confirm,
-        dub=args.dub,
-        quality=args.quality,
-        destination=args.destination,
-    )
-    """
     anime = await client.get_anime(args.value)
     episodes = await client.get_episodes(anime)
     if args.dub:
@@ -47,7 +37,6 @@ async def handle_download_search(client, args):
     await client.download_by_id(
         anime_id,
         episodes=args.episodes,
-        no_confirm=args.no_confirm,
         dub=args.dub,
         quality=args.quality,
         destination=args.destination,
